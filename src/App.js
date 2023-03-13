@@ -1,17 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
 import { LoginButton } from './Login';
 import { LogoutButton } from './Logout';
 import { Profile } from './Profile';
 import { useAuth0 } from '@auth0/auth0-react';
+import Course from './components/Course';
 
 function App() {
   const { isAuthenticated } = useAuth0()
-  console.log(isAuthenticated);
+
+  if(isAuthenticated){
+    return <Course/>
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <div>
+        <h1>Bienvenidos al curso de React query</h1>
+
         {isAuthenticated ? <>
           <Profile />
           <LogoutButton />
@@ -19,7 +21,9 @@ function App() {
           :
           <LoginButton />
         }
-      </header>
+      <main>
+        //todo
+      </main>
     </div>
   );
 }
